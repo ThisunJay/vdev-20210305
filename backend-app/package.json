@@ -6,6 +6,7 @@
   "author": "Jayamadhu Thisun",
   "license": "MIT",
   "dependencies": {
+    "@types/fastify-static": "^2.2.1",
     "@types/node": "^14.14.31",
     "fastify": "^3.13.0",
     "fastify-cors": "^5.2.0",

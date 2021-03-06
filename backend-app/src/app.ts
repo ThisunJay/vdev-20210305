@@ -2,6 +2,8 @@ import fastify from 'fastify'
 import {FastifyRequest, FastifyReply} from 'fastify';
 import Movies from './MoviesList.json'
 import fastifycors from 'fastify-cors'
+const path = require('path');
+const fastifystatic = require('fastify-static');
 
 const server = fastify()
 
@@ -9,8 +11,15 @@ server.register(fastifycors, {
     origin: true,
 });
 
-server.get('/', async (request, reply) => {
-  return 'Movies API Server Running'
+server.register(require('fastify-static'), {
+    root: path.join(__dirname, '/dist'),
+  })
+
+server.get('/', async (req, reply: any) => {
+
+   return reply.sendFile('index.html') // serving a file from a different root location
+    // return 'API RUNNING';
+
 })
 
 server.get('/api/movies', (request, reply: FastifyReply) => {
